@@ -1,9 +1,8 @@
-package com.pm.GeoCacheMicro.UserService.Controllers;
+package com.pm.GeoCacheMicro.GatewayService.Controllers;
 
-
-import com.pm.GeoCacheMicro.UserService.Models.ApplicationUser.ApplicationUser;
-import com.pm.GeoCacheMicro.UserService.Models.ApplicationUser.DTO.ApplicationUserResponseDTO;
-import com.pm.GeoCacheMicro.UserService.Services.ApplicationUserService;
+import com.pm.GeoCacheMicro.GatewayService.Models.ApplicationUser;
+import com.pm.GeoCacheMicro.GatewayService.Models.DTO.ApplicationUserResponseDTO;
+import com.pm.GeoCacheMicro.GatewayService.Services.ApplicationUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,32 +11,23 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 
 @RestController
-@RequestMapping("/users")
-public class ApplicationUserController {
-
+@RequestMapping("/auth/user")
+public class AuthController {
 
     @Autowired
-    private ApplicationUserService userService;
+    ApplicationUserService userService;
 
     @Autowired
     private ModelMapper modelMapper;
 
-    /*@PostMapping("/signin")
-
-    public String login(//
-                        @RequestParam String username, //
-                        @RequestParam String password) {
+    @PostMapping("/login")
+    public String login(@RequestParam String username,@RequestParam String password) {
         return userService.signin(username, password);
-    }*/
+    }
 
     @PostMapping("/signup")
     public String signup(@RequestBody ApplicationUser user) {
         return userService.signup(modelMapper.map(user, ApplicationUser.class));
-    }
-
-    @GetMapping("/getUserByUserName")
-    public ApplicationUser getUser(@RequestBody String username) {
-        return userService.search(username);
     }
 
     @DeleteMapping(value = "/{username}")
@@ -64,6 +54,5 @@ public class ApplicationUserController {
     public String refresh(HttpServletRequest req) {
         return userService.refresh(req.getRemoteUser());
     }
-
 
 }

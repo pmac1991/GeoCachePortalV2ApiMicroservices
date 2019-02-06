@@ -5,10 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @RestController
-@RequestMapping("/")
 public class GeoCacheController {
 
     @Autowired
@@ -16,7 +17,7 @@ public class GeoCacheController {
 
 
     @RequestMapping("/geoCaches")
-    public String getImages() {
+    public String getImages(HttpServletRequest request, HttpServletResponse response) {
         return "test";
 
     }

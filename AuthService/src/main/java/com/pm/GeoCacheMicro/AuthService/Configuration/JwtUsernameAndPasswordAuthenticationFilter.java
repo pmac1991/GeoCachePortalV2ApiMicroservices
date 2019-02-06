@@ -1,6 +1,10 @@
 package com.pm.GeoCacheMicro.AuthService.Configuration;
 
-import java.io.IOException;
+public class JwtUsernameAndPasswordAuthenticationFilter {
+
+}
+
+/*import java.io.IOException;
 import java.sql.Date;
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -105,4 +109,4 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
 
 
     }
-}
+}*/
